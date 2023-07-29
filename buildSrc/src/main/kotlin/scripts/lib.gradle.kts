@@ -38,7 +38,7 @@ android {
             java.srcDir("src/main/kotlin")
         }
     }
-    
+
     buildTypes {
         getByName("debug") {
             enableUnitTestCoverage = true // 开启单元测试覆盖率统计
@@ -83,4 +83,30 @@ val runTasks: MutableList<String> = gradle.startParameter.taskNames
 tasks.register<Jar>("androidSourcesJar") {
     from(android.sourceSets["main"].java.srcDirs)
     archiveClassifier.set("sources")
+}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            create<MavenPublication>("releaseAar") {
+                // Applies the component for the release build variant.
+                groupId = Artifacts.GROUP_ID
+                artifactId = Artifacts.ARTIFACT_ID
+                version = LIB_VERSION_NAME
+
+                artifact(tasks["bundleReleaseAar"])
+                artifact(tasks["androidSourcesJar"])
+            }
+            // Creates a Maven publication called “snapshot”.
+            create<MavenPublication>("snapshotAar") {
+                // Applies the component for the snapshot build variant.
+                groupId = Artifacts.GROUP_ID
+                artifactId = Artifacts.ARTIFACT_ID
+                version = "$LIB_VERSION_NAME-SNAPSHOT"
+
+                artifact(tasks["bundleReleaseAar"])
+                artifact(tasks["androidSourcesJar"])
+            }
+        }
+    }
 }
