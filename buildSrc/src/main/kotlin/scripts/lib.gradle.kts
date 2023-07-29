@@ -38,6 +38,23 @@ android {
             java.srcDir("src/main/kotlin")
         }
     }
+    
+    buildTypes {
+        getByName("debug") {
+            enableUnitTestCoverage = true // 开启单元测试覆盖率统计
+            enableAndroidTestCoverage = true // 开启仪表测试覆盖率统计
+            multiDexKeepProguard =
+                file("proguard-multidex-rules.pro") // 解决 API 21 以下系统 android test 方法数超出 64K 限制问题
+        }
+        create("snapshot") {
+            enableUnitTestCoverage = false // 关闭单元测试覆盖率统计
+            enableAndroidTestCoverage = false // 关闭仪表测试覆盖率统计
+        }
+        getByName("release") {
+            enableUnitTestCoverage = false // 关闭单元测试覆盖率统计
+            enableAndroidTestCoverage = false // 关闭仪表测试覆盖率统计
+        }
+    }
 
     compileOptions {
         encoding = "UTF-8"
