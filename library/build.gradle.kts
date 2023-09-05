@@ -15,9 +15,8 @@ android {
 
 dependencies {
     // main
+    coreLibraryDesugaring(Libraries.DESUGAR)
     implementation(Libraries.Androidx.STARTUP)
     implementation(Libraries.Androidx.APPCOMPAT)
-    implementation(Libraries.THREE_TEN_ABP)
     implementation(Libraries.Google.ZXING)
-    implementation(Libraries.EASY_PERMISSIONS)
 }

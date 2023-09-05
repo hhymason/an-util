@@ -1,10 +1,10 @@
 package com.mason.util.time
 
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDate
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.Instant
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 private const val DEPRECATED_DESCRIPTION = "using iso prefix properties or functions"
 private const val DEPRECATED_REPLACE_IMPORT = "com.mason.util.time"

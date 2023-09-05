@@ -8,6 +8,7 @@ import com.mason.util.context.startActivity
 import com.mason.util.sample.compress.CompressTestActivity
 import pub.devrel.easypermissions.EasyPermissions
 
+
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +16,10 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         findViewById<Button>(R.id.btn_compress).setOnClickListener {
             doEvent()
         }
+    }
+
+    companion object {
+        const val a = 1
     }
 
     private fun doEvent() {
@@ -45,3 +50,4 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 //        finish()
     }
 }
+

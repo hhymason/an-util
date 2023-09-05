@@ -1,8 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-import plugins.LIB_VERSION_NAME
 import plugins.MavenUrls
 import plugins.Versions
-import plugins.gitBranchName
 
 plugins {
     id("org.jetbrains.kotlinx.kover")

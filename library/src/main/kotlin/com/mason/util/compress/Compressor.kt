@@ -1,6 +1,5 @@
 package com.mason.util.compress
 
-import android.Manifest
 import android.content.Context
 import android.net.Uri
 import android.util.Log
@@ -8,7 +7,6 @@ import com.mason.util.file.FileUri
 import com.mason.util.file.isExist
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 import kotlin.coroutines.CoroutineContext
 import kotlin.system.measureTimeMillis
@@ -31,7 +29,6 @@ object Compressor {
         logSwitch: Boolean = false,
     ) = withContext(coroutineContext) {
         if (checkContext(context)) return@withContext null
-        if (checkPermission(context)) return@withContext null
         if (checkImageFile(imageFile)) return@withContext null
         // create cache file
         val result: File? = createCacheFile(context!!, imageFile, resultName)
@@ -54,7 +51,6 @@ object Compressor {
         logSwitch: Boolean = false,
     ) = withContext(coroutineContext) {
         if (checkContext(context)) return@withContext null
-        if (checkPermission(context)) return@withContext null
         if (checkFileUri(fileUri)) return@withContext null
         // obtain image file by uri
         val imageFile = obtainImageFileByUri(context, fileUri)
@@ -101,18 +97,6 @@ object Compressor {
         return false
     }
 
-    private fun checkPermission(context: Context?): Boolean {
-        val hasPermission = EasyPermissions.hasPermissions(
-            context!!,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-        if (!hasPermission) {
-            Log.e(TAG, "Compression failed! Please check permission denied.")
-            return true
-        }
-        return false
-    }
 
     private fun checkFileUri(fileUri: Uri?): Boolean {
         if (fileUri == null) {

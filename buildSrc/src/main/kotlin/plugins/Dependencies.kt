@@ -24,6 +24,7 @@ object Versions {
         const val LEAK_CANARY = "2.9.1"
     }
 
+    const val DESUGAR = "1.2.2"
     const val THREE_TEN_ABP = "1.3.1"
     const val EASY_PERMISSIONS = "3.0.0"
 }
@@ -64,6 +65,6 @@ object Libraries {
             "com.squareup.leakcanary:leakcanary-android:${Versions.Square.LEAK_CANARY}"
     }
 
-    const val THREE_TEN_ABP = "com.jakewharton.threetenabp:threetenabp:${Versions.THREE_TEN_ABP}"
+    const val DESUGAR = "com.android.tools:desugar_jdk_libs:${Versions.DESUGAR}"
     const val EASY_PERMISSIONS = "pub.devrel:easypermissions:${Versions.EASY_PERMISSIONS}"
 }
